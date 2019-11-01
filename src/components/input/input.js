@@ -7,7 +7,7 @@ export default class Input extends Component{
         return(
             <div className="busca">
                 <input type="text" className="input" placeholder="Adicione um novo to do!" />
-                <button type="button" className="add"><FaPlusSquare className="icon" /></button>
+                <button type="button" onClick={this.addItem}><FaPlusSquare className="icone" /></button>
             </div>
         )
     }

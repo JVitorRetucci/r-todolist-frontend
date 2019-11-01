@@ -34,6 +34,12 @@
 
 .icon{
     margin-left: 5px;
+    font-size: 18px;
+}
+
+button{
+    height: auto;
+    width: auto;
 }
 
 button:hover{

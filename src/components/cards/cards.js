@@ -1,31 +1,39 @@
 import React, { Component } from 'react';
-import { FaArrowCircleRight, FaCheckCircle } from 'react-icons/fa';
+import { FaArrowCircleRight, FaTimesCircle } from 'react-icons/fa';
 import './styles.css';
 
 export default class Cards extends Component{
     state = {
-        todo: [],
+            todo: ["João", "Pedro", "Ju"],
+            doing: ["001", "002"],
+            done: ["teste"]
     }
-
+        
     render(){
         return(
             <div className="container">
                 <div className="card">
                     <h2>To Do</h2>
                     <ul id="todos">
-                        <li className="items">Ir na aulda de JS<button><FaArrowCircleRight className="icon" /></button></li>
+                        {this.state.todo.map((item, index) => (
+                            <li key={index} className="items">{item}<button><FaArrowCircleRight className="icon" /></button></li>
+                        ))}
                     </ul>
                 </div>
                 <div className="card">
                     <h2>Doing</h2>
                     <ul id="doing">
-                        <li className="items">Revisar HTML e CSS<button><FaArrowCircleRight className="icon" /></button></li>
+                        {this.state.doing.map((item, index) => (
+                            <li key={index} className="items">{item}<button><FaArrowCircleRight className="icon" /></button></li>
+                        ))}
                     </ul>
                 </div>
                 <div className="card">
                     <h2>Done</h2>
                     <ul id="done">
-                        <li className="items">Ir na reunião de projetos<button><FaCheckCircle className="icon" /></button></li>
+                        {this.state.done.map((item, index) => (
+                            <li key={index} className="items">{item}<button><FaTimesCircle className="icon" /></button></li>
+                        ))}
                     </ul>
                 </div>
             </div>
