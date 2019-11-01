@@ -13,13 +13,18 @@ export default class Cards extends Component{
             done: ["teste"]
         }
     }
+    
+    changeUserInput(input){
+        this.setState({
+            userInput: input
+        })
+    }
         
     addItem = (input) =>{
         let listArray = this.state.todo;
         
         listArray.push(input);
         console.log(listArray);
-        
 
         this.setState({
             todo: listArray,
@@ -31,8 +36,8 @@ export default class Cards extends Component{
         return(
             <div>
                 <div className="busca">
-                    <input type="text" className="input" placeholder="Adicione um novo to do!" />
-                    <button type="button" onClick={this.addItem}><FaPlusSquare className="icone" /></button>
+                    <input onChange={(e)=>this.changeUserInput(e.target.value)} value={this.state.userInput} type="text" className="input" placeholder="Adicione um novo to do!" />
+                    <button type="button" onClick={()=>this.addItem(this.state.userInput)}><FaPlusSquare className="icone" /></button>
                 </div>
                 <div className="container">
                     <div className="card">
