@@ -8,7 +8,7 @@ export default class Cards extends Component{
         
         this.state = {
             userInput: '',
-            todo: ["João", "Pedro", "Ju"],
+            todo: ["Atividade 1", "Atividade 2", "Atividade 3"],
             doing: ["001", "002"],
             done: ["teste"]
         }
@@ -20,7 +20,7 @@ export default class Cards extends Component{
         })
     }
         
-    addItem = (input) =>{
+    addItem(input){
         let listArray = this.state.todo;
         
         listArray.push(input);
@@ -30,6 +30,42 @@ export default class Cards extends Component{
             todo: listArray,
             userInput: ''
         });
+    }
+
+    toDoing(index){
+        let listTodo = this.state.todo;
+        let listDoing = this.state.doing;
+
+        listDoing.push(listTodo[index]);
+        listTodo.splice(index, 1);
+
+        this.setState({
+            todo: listTodo,
+            doing: listDoing
+        });
+    }
+
+    toDone(index){
+        let listDoing = this.state.doing;
+        let listDone = this.state.done;
+
+        listDone.push(listDoing[index]);
+        listDoing.splice(index, 1);
+
+        this.setState({
+            doing: listDoing,
+            done: listDone
+        });
+    }
+
+    delItem(index){
+        let listArray = this.state.done;
+
+        listArray.splice(index, 1);
+
+        this.setState({
+            done: listArray
+        })
     }
 
     render(){
@@ -44,7 +80,7 @@ export default class Cards extends Component{
                         <h2>To Do</h2>
                         <ul id="todos">
                             {this.state.todo.map((item, index) => (
-                                <li key={index} className="items">{item}<button><FaArrowCircleRight className="icon" /></button></li>
+                                <li key={index} className="items">{item}<button onClick={()=>this.toDoing(index)}><FaArrowCircleRight className="icon" /></button></li>
                             ))}
                         </ul>
                     </div>
@@ -52,7 +88,7 @@ export default class Cards extends Component{
                         <h2>Doing</h2>
                         <ul id="doing">
                             {this.state.doing.map((item, index) => (
-                                <li key={index} className="items">{item}<button><FaArrowCircleRight className="icon" /></button></li>
+                                <li key={index} className="items">{item}<button onClick={()=>this.toDone(index)}><FaArrowCircleRight className="icon" /></button></li>
                             ))}
                         </ul>
                     </div>
@@ -60,7 +96,7 @@ export default class Cards extends Component{
                         <h2>Done</h2>
                         <ul id="done">
                             {this.state.done.map((item, index) => (
-                                <li key={index} className="items">{item}<button><FaTimesCircle className="icon" /></button></li>
+                                <li key={index} className="items">{item}<button onClick={()=>this.delItem(index)}><FaTimesCircle className="icon" /></button></li>
                             ))}
                         </ul>
                     </div>
