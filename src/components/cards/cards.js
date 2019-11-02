@@ -21,15 +21,16 @@ export default class Cards extends Component{
     }
         
     addItem(input){
-        let listArray = this.state.todo;
+        if(input !== ''){
+            let listArray = this.state.todo;
         
-        listArray.push(input);
-        console.log(listArray);
+            listArray.push(input);
 
-        this.setState({
-            todo: listArray,
-            userInput: ''
-        });
+            this.setState({
+                todo: listArray,
+                userInput: ''
+            });
+        }
     }
 
     toDoing(index){
